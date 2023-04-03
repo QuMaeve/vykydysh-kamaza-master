@@ -1,0 +1,14 @@
+{% extends 'layouts/main-fullscreen.html' %}
+
+{% block title %}login{% endblock title %}
+
+{% block content %}
+
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Login</button>
+</form>
+
+{% endblock %}

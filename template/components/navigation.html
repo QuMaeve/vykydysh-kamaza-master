@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'main' %}">
+                        Здравствуйте, 
+                        {{user.last_name| default:"" }} 
+                        {{user.first_name| default:"" }} 
+                        {{user.patronymic| default:"" }}
+                        ({{user.username| default:"" }} -
+                        {% for group in user.groups.all %}
+                                {{ group }}
+                        {% endfor %}
+                        )
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="{% url 'main' %}">
+                        Главная
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" 
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Личный кабинет
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="{% url 'bookshelf' %}">
+                                Моя полка
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Учётная запись
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"  href="{% url 'logout' %}">
+                                Выйти
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% for group in user.groups.all %}
+                {% if group.name == 'Администратор'%}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" 
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Админ.функции
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="/admin">
+                                Административная панель
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'book-create' %}">
+                                Добавить книгу
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'author-create' %}">
+                                Добавить автора
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'report' %}">
+                                Отчет
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'user' %}">
+                                Импорт
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Найти</button>
+            </form>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,49 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Создание автора{% endblock %}
+
+{% block content %}
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <h3>Создание автора</h3>
+            </div>
+            
+        </div>
+        <div class="card-body">
+
+            {% include 'components/alert.html' %}
+
+            <form method="post" >
+                <div class="col-6 m-auto">
+                {% csrf_token %}
+                <!-- {{form.as_p}} -->
+                    <div class="mb-3">
+                        <label for="id_first_name" class="form-label">{{ form.first_name.label }}</label>
+                        {{ form.first_name }}
+                        <div id="id_first_name" class="form-text">{{ form.first_name.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_last_name" class="form-label">{{ form.last_name.label }}</label>
+                        {{ form.last_name }}
+                        <div id="id_last_name" class="form-text">{{ form.last_name.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_patronymic" class="form-label">{{ form.patronymic.label }}</label>
+                        {{ form.patronymic }}
+                        <div id="id_patronymic" class="form-text">{{ form.patronymic.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_description" class="form-label">{{ form.description.label }}</label>
+                        {{ form.description }}
+                        <div id="id_description" class="form-text">{{ form.description.errors }}</div>
+                    </div> 
+                    <button class="btn btn-outline-primary" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

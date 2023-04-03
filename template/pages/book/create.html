@@ -1,0 +1,84 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Создание книги{% endblock %}
+
+{% block content %}
+
+<section class="content">
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">
+                <h3>Создание книги</h3>
+            </div>
+            
+        </div>
+        <div class="card-body">
+
+            {% include 'components/alert.html' %}
+
+            <form method="post" enctype="multipart/form-data" >
+                <div class="col-6 m-auto">
+                {% csrf_token %}
+                <!-- {{form.as_p}} -->
+                    <div class="mb-3">
+                        <label for="id_name" class="form-label">{{ form.name.label }}</label>
+                        {{ form.name }}
+                        <div id="id_name" class="form-text">{{ form.name.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_author" class="form-label">{{ form.author.label }}</label>
+                        <div class="row">
+                            <div class="col-11">
+                                {{ form.author }}
+                            </div>
+                            <div class="col-1">
+                                <a href="{% url 'author-create' %}">    
+                                    <i class="bi bi-plus-circle-dotted">
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="id_author" class="form-text">{{ form.author.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_genre" class="form-label">{{ form.genre.label }}</label>
+                        {{ form.genre }}
+                        <div id="id_genre" class="form-text">{{ form.genre.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_count" class="form-label">{{ form.count.label }}</label>
+                        {{ form.count }}
+                        <div id="id_count" class="form-text">{{ form.count.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_description" class="form-label">{{ form.description.label }}</label>
+                        {{ form.description }}
+                        <div id="id_description" class="form-text">{{ form.description.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_doc_path" class="form-label">{{ form.doc_path.label }}</label>
+                        {{ form.doc_path }}
+                        <div id="id_doc_path" class="form-text">{{ form.doc_path.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_doc_url" class="form-label">{{ form.doc_url.label }}</label>
+                        {{ form.doc_url }}
+                        <div id="id_doc_url" class="form-text">{{ form.doc_url.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_cover_path" class="form-label">{{ form.cover_path.label }}</label>
+                        {{ form.cover_path }}
+                        <div id="id_cover_path" class="form-text">{{ form.cover_path.errors }}</div>
+                    </div> 
+                    <div class="mb-3">
+                        <label for="id_cover_url" class="form-label">{{ form.cover_url.label }}</label>
+                        {{ form.cover_url }}
+                        <div id="id_cover_url" class="form-text">{{ form.cover_url.errors }}</div>
+                    </div> 
+                    <button class="btn btn-outline-primary" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

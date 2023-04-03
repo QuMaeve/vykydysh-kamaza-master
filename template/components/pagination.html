@@ -1,0 +1,41 @@
+{% if data.has_other_pages %}
+
+{% load proper_paginate %}
+{% load url_replace %}
+
+<nav aria-label="pagination" class="mt-3">
+    <ul class="pagination">
+        {% if data.number != 1 %}
+            <li>
+                <a class="page-link" href="?{% url_replace request 'page' 1 %}">⇤</a>
+            </li>
+        {% endif %}
+        {% if data.has_previous %}
+            <li>
+                <a class="page-link" href="?{% url_replace request 'page' data.previous_page_number %}">&laquo;</a>
+            </li>
+        {% endif %}
+        {% for i in data.paginator|proper_paginate:data.number %}
+            {% if data.number == i %}
+                <li class="page-item active" aria-current="page">
+                    <span class="page-link">{{ i }}</span>
+                </li>
+            {% else %}
+                <li>
+                    <a class="page-link" href="?{% url_replace request 'page' i %}">{{ i }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+        {% if data.has_next %}
+            <li>
+                <a class="page-link" href="?{% url_replace request 'page' data.next_page_number %}">&raquo;</a>
+            </li>
+        {% endif %}
+        {% if data.number != data.paginator.num_pages %}
+            <li>
+                <a class="page-link" href="?{% url_replace request 'page' data.paginator.num_pages %}">⇥</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}

@@ -1,0 +1,35 @@
+
+@font-face {
+	font-family: 'Comforter'; 
+	src: local('Comforter'),
+		url(/static/assets/font/Comforter-Regular.otf); 
+    }
+@font-face {
+    font-family: 'Moloko'; 
+    src: local('Moloko'),
+        url(/static/assets/font/moloko.ttf); 
+    }
+    .Moloko {
+    font-family: 'Moloko'; 
+    font-size: 50px;
+    }
+    .Comforter {
+    font-family: 'Comforter'; 
+    font-size: 50px;
+    }
+/*    
+body{
+    font-family: 'Moloko'!important; 
+     font-family: 'Comforter'!important;  
+    font-size: 40px!important;
+} 
+*/
+/* .main {
+    background-image: url('/static/img/5vAeuC0ss6g.jpg');
+    background-size: cover;
+    opacity: 0.1; 
+} 
+*/
+/* .alt-bg {
+    background-image: url('/static/img/INKOT.png');
+} */

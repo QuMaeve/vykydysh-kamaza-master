@@ -1,0 +1,39 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Отчет{% endblock title %}
+{% block content %} 
+
+<section class="content">
+    <h1 class="text-center">Отчет</h1>
+    <div class="container">
+        <div class="card m-3">
+            <!-- {% for item in data %}
+                {% with index=forloop.counter %}
+                    {{ item.username }}
+                {% endwith %}    
+            {% endfor %} -->
+            {% include 'components/alert.html' %}
+            <form method="post">
+                {% csrf_token %} 
+                <div class="row p-3">
+                    <div class="col-6"></div>
+                        <p class="form-label">
+                            <h3>{{ form.start_period.label }}</h3>
+                        </p>
+                        {{ form.start_period }}
+                        <div class="form-text">{{ form.start_period.errors }}</div>
+                    </div>
+                    <div class="col-6"></div>
+                        <p class="form-label">
+                            <h3>{{ form.end_period.label }}</h3>
+                        </p>
+                        {{ form.end_period }}
+                        <div class="form-text">{{ form.end_period.errors }}</div>
+                    </div>
+                    <button class="btn btn-outline-primary" type="submit">Сформировать</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock content %}
