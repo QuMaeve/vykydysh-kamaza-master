@@ -17,7 +17,7 @@ class BookForm(forms.ModelForm):
     author = forms.ModelChoiceField(
         label="Автор",
         required=True,
-        queryset=Author.objects.filter(deleted=False),
+        queryset=Author.objects.all(),
         widget=forms.Select(
             attrs={
                 "class": "form-select form-select-sm search-select"
@@ -128,7 +128,8 @@ class FilterBookForm(forms.Form):
         ],
         widget=forms.Select(
             attrs={
-                "class": "form-select"
+                "placeholder": "Сортировать",
+                "class": "form-select form-control-sm me-2"
             }
         ),
     )
@@ -137,8 +138,9 @@ class FilterBookForm(forms.Form):
         label="Поиск",
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Поиск по наименованию",
-                "class": "form-control"
+                "placeholder": "Поиск",
+                "class": "form-control form-control-sm me-2", 
+                "type":"search",
             }
         )
     )

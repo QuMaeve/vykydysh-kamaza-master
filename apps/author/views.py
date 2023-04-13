@@ -16,7 +16,6 @@ def create(request):
         if form.is_valid():
             author_create = form.save()
             author_create.user_id = request.user
-            author_create.deleted = 0
             author_create.save()
             messages.success(request, 'Автор успешно добавлен')
         else:

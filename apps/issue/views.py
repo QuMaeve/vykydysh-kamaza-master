@@ -33,18 +33,16 @@ def index(request):
         user = CustomUser.objects.get(id=request.user.id), 
         end_time__gt = (datetime.date.today()).strftime("%Y-%m-%d")).order_by('id')
     print(data)
-    page = request.GET.get('page', 1)
     paginator = Paginator(data, 10)
+    page = request.GET.get('page', 1)
     try:
         data = paginator.page(page)
     except PageNotAnInteger:
         data = paginator.page(1)
     except EmptyPage:
         data = paginator.page(paginator.num_pages)
-    return render(
-        request, 
-        'pages/bookshelf/index.html', 
-        {'data':data,'base_dir':BASE_DIR})
+
+    return render(request, 'pages/bookshelf/index.html', {'data':data, 'base_dir':BASE_DIR,})
 
 @login_required(login_url='login')
 def create_issue(request, id):
@@ -76,19 +74,17 @@ def add_issue(request, id):
     # form = IssueUserForm()
                         #  
                         #  initial={'student.queryset': CustomUser.objects.filter(
-                        #                     deleted=False, 
                         #                     establishment = Establishment.objects.get(id=request.user.establishment.id),
                         #                     groups__name='Ученики')}
                                             
-    users = CustomUser.objects.filter(deleted=False, groups__name='Ученики')
+    users = CustomUser.objects.filter(groups__name='Ученики')
     if request.method == 'POST':
         print(form.errors)
         if form.is_valid():
             for student in form.cleaned_data.get("student"):
                 if Issue.objects.filter(
                 book = Book.objects.get(id=id),
-                user = CustomUser.objects.get(id=student.id),
-                deleted = False).exists()==False:
+                user = CustomUser.objects.get(id=student.id)).exists()==False:
                     Issue.objects.create(
                         book = Book.objects.get(id=id),
                         user = CustomUser.objects.get(id=student.id),
@@ -123,7 +119,7 @@ def report(request):
     }
     print(initial_data)
     form = IssueReportForm(request.POST or None, initial = initial_data)
-    users = CustomUser.objects.filter(deleted=False, groups__name='Ученики')
+    users = CustomUser.objects.filter(groups__name='Ученики')
     if request.method == 'POST':
         print(form.errors)
         if form.is_valid():
@@ -163,7 +159,7 @@ def report(request):
                 # print('loc:',loc.name)
                 issue = Issue.objects.filter(
                     start_time__range = [(form.cleaned_data['start_period']),form.cleaned_data['end_period']],
-                    user_id__in = CustomUser.objects.filter(deleted=False, locality = loc))
+                    user_id__in = CustomUser.objects.filter( locality = loc))
                 # print('loc:',issue.count())
                 for value in {
                     "Район": loc.name,
@@ -177,7 +173,7 @@ def report(request):
                     "Район": "Без привязки к району",
                     "Количество": str(Issue.objects.filter(
                     start_time__range = [(form.cleaned_data['start_period']),form.cleaned_data['end_period']],
-                    user_id__in = CustomUser.objects.filter(deleted=False, locality = None)).count()),
+                    user_id__in = CustomUser.objects.filter( locality = None)).count()),
                 }.values():
                     ws.write(row_num, col_num, value, style)
                     col_num += 1

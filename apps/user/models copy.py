@@ -35,7 +35,7 @@ class CustomUser(AbstractUser):
         related_name='user_establishment',
         verbose_name="Учебное учреждение",
     )
-    deleted = models.BooleanField(default=0)
+    # deleted = models.BooleanField(default=0)
 
     REQUIRED_FIELDS=['patronymic',]
     USERNAME_FIELD='username'

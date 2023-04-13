@@ -69,6 +69,9 @@
                         <div id="id_doc_url" class="form-text">{{ form.doc_url.errors }}</div>
                     </div> 
                     <div class="mb-3">
+                        <a href="{{ data.cover_path }}" target="_blank">Текущая обложка</a>
+                    </div> 
+                    <div class="mb-3">
                         <label for="id_cover_path" class="form-label">{{ form.cover_path.label }}</label>
                         {{ form.cover_path }}
                         <div id="id_cover_path" class="form-text">{{ form.cover_path.errors }}</div>

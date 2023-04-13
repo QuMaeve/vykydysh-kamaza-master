@@ -46,7 +46,8 @@ class CustomUser(AbstractUser):
         related_name='user_establishment',
         verbose_name="Учебное учреждение",
     )
-    deleted = models.BooleanField(default=0)
+    cleaned_password = models.CharField(_("Пароль исходный"), 
+                                  max_length=150, null=True)
     USERNAME_FIELD="username"
     REQUIRED_FIELDS=[]
 

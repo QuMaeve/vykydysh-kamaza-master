@@ -25,7 +25,7 @@ class Issue(models.Model):
     end_time = models.DateField(
         null=True,
         blank=True)
-    deleted = models.BooleanField(default=0)
+    # deleted = models.BooleanField(default=0)
 
     class Meta:
          verbose_name_plural = "Выдача"

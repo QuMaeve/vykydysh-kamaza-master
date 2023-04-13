@@ -1,0 +1,31 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Импорт({{g_name}}){% endblock title %}
+{% block content %} 
+
+<section class="content">
+    <h1 class="Comforter text-center m-3">Импорт ({{g_name}})</h1>
+    <div class="container">
+        <div class="card m-3">
+            <div class="card-header">
+                <h6>Выберите файл со списком преподавателей</h6>
+            </div>
+            <div class="card-body">
+                {% include 'components/alert.html' %}
+                <form method="post" action="{% url 'import_teacher' %}" enctype="multipart/form-data">
+                    {% csrf_token %} 
+                    <input type="hidden" id="g_name" name="g_name" required value="{{g_name}}">
+                    <div class="row p-3 m-3">
+                        <div class="col-6 text-center m-auto">
+                            <!-- <label>{{ form.file.label }}</label> -->
+                            {{ form.file }}
+                            <p>{{form.file.errors}}</p>
+                            <button class="btn btn-outline-success" type="submit">Сформировать</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

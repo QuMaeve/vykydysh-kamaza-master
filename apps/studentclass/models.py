@@ -11,7 +11,7 @@ class Class(models.Model):
         related_name='class_establishment',
         verbose_name= "Школа"
     )
-    deleted = models.BooleanField(default=0)
+    # deleted = models.BooleanField(default=0)
     def __str__(self):
     #     self.name = name
     #     self.genre = genre

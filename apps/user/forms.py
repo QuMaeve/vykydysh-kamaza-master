@@ -10,7 +10,7 @@ class CustomUserCreationForm(UserCreationForm):
             "username",
             "first_name","last_name","patronymic",
             "email",
-            "locality","classes","establishment","deleted",)
+            "locality","classes","establishment",)
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
@@ -19,4 +19,4 @@ class CustomUserChangeForm(UserChangeForm):
             "username",
             "first_name","last_name","patronymic",
             "email",
-            "locality","classes","establishment","deleted",)
+            "locality","classes","establishment",)

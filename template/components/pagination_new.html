@@ -1,0 +1,43 @@
+{% if data.has_other_pages %}
+    <div class="my-3">
+        <ul class="pagination justify-content-center">
+            {% if data.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Первая</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ data.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                        Предыдущая
+                    </a>
+                </li>
+            {% endif %}
+
+            {% for page_number in data.paginator.page_range %}
+                {% if page_number <= data.number|add:3 and page_number >= data.number|add:-3 %}
+                    {% if data.number == page_number %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{ page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ page_number }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ page_number }}</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+            {% if data.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ data.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                        Следующая
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ data.paginator.num_pages }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                        Последняя
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}

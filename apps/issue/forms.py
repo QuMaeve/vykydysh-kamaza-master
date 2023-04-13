@@ -7,8 +7,7 @@ class IssueUserForm(forms.ModelForm):
     student = forms.ModelMultipleChoiceField(
         label='Ученики',
         required=False,
-        queryset=CustomUser.objects.filter(
-            deleted=False, groups__name='Ученики'),
+        queryset=CustomUser.objects.filter(groups__name='Ученики'),
         widget=forms.SelectMultiple(
             attrs={
                 "placeholder": "Ученики",
@@ -20,7 +19,7 @@ class IssueUserForm(forms.ModelForm):
         super(IssueUserForm, self).__init__(*args, **kwargs)
         # print(user.establishment.id)
         self.fields['student'].queryset = CustomUser.objects.filter(
-             deleted=False, establishment=Establishment.objects.get(id=user.establishment.id),
+             establishment=Establishment.objects.get(id=user.establishment.id),
              groups__name='Ученики')
            
     class Meta:

@@ -6,7 +6,7 @@ class Author(models.Model):
     last_name = models.CharField(max_length=150, null=True, blank=True)
     patronymic = models.CharField(max_length=150, null=True, blank=True)
     description =  models.TextField(max_length=500, null=True, blank=True)
-    deleted = models.BooleanField(default=0)
+    
 
     def __str__(self):
         # self.first_name = first_name

@@ -11,19 +11,17 @@
     }
     .Moloko {
     font-family: 'Moloko'; 
-    font-size: 50px;
+    font-size: 70px;
     }
     .Comforter {
     font-family: 'Comforter'; 
-    font-size: 50px;
+    font-size: 70px;
     }
-/*    
-body{
-    font-family: 'Moloko'!important; 
-     font-family: 'Comforter'!important;  
-    font-size: 40px!important;
-} 
-*/
+   
+/* body{
+    background-color:#f7f6f5!important;
+}  */
+
 /* .main {
     background-image: url('/static/img/5vAeuC0ss6g.jpg');
     background-size: cover;

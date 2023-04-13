@@ -59,30 +59,31 @@ class CustomUserresourse(resources.ModelResource):
         model = CustomUser
         exclude =['id', 'password',]
 
-class CustomUserAdmin(ImportExportActionModelAdmin):
+# ImportExportActionModelAdmin
+class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    # model = CustomUser
-    resourse_class=CustomUserresourse
+    model = CustomUser
+    # resourse_class=CustomUserresourse
     list_display = (
         "username",
         "first_name","last_name","patronymic","email",
-        "locality","classes","establishment","deleted",
-        "is_staff", "is_active",
+        "locality","classes","establishment",
+        "cleaned_password","is_staff", "is_active",
         )
     list_filter = (
         "groups__name",
         # "username","first_name","last_name","patronymic","email",
         "locality","classes","establishment",
-        # "deleted",
+        
         "is_staff", "is_active",
         )
     fieldsets = (
         (None, 
          {"fields": (
         "username","first_name","last_name",
-        "patronymic","email","password",
-        "locality","classes","establishment","deleted",
+        "patronymic","email","password","cleaned_password",
+        "locality","classes","establishment",
         )}
          ),
         ("Permissions", {"fields": ("is_staff", "is_active", "groups", "user_permissions")}),
@@ -93,8 +94,8 @@ class CustomUserAdmin(ImportExportActionModelAdmin):
             "fields": (
                 "username","first_name","last_name",
                 "patronymic","email",
-                "locality","classes","establishment","deleted",
-                "password1", "password2", "is_staff",
+                "locality","classes","establishment",
+                "password1", "password2", "cleaned_password", "is_staff",
                 "is_active", "groups", "user_permissions"
             )}
         ),

@@ -12,7 +12,7 @@ class Establishment(models.Model):
         on_delete=models.SET_NULL,
         related_name='establishment_locality',
     )
-    deleted = models.BooleanField(default=0)
+    # deleted = models.BooleanField(default=0)
     def __str__(self):
         return self.name
     class Meta:
