@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout', views.LogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
     path('author/',  include('apps.author.urls')),
+    path('establishment/',  include('apps.establishment.urls')),
     path('user/',  include('apps.user.urls')),
     path('book/', include('apps.book.urls')),
     path('documents/', include('apps.file.urls')),

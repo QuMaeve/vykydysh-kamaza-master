@@ -1,0 +1,27 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Учебные учреждения{% endblock title %}
+
+{% block content %} 
+{% for group in user.groups.all %}
+    {% if group.name == 'Администратор' or group.name == 'Библиотекарь' %}
+        <section class="content">
+            <div >
+                <h1 class="Comforter text-center m-3">{{data.name}}</h1>
+                <div class="m-auto" style="width:90%; margin:auto!important;">
+                    <div class="row">
+                        <div class="card col-6 m-auto text-start">    
+                            <p><b>Наименование:</b> {{data.name}}</p>
+                            <p><b>Район:</b> {{data.locality.name}}</p>
+                            <p><b>Контакты:</b> {{data.contacts}}</p>
+                            <p><b>Адрес:</b> {{data.address}}</p>
+                            <p><b>Реквизиты:</b> {{data.requisites}}</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    {% endif %}   
+{% endfor %}
+{% endblock content %}

@@ -47,14 +47,18 @@ def index(request):
 @login_required(login_url='login')
 def create_issue(request, id):
     if request.method == 'POST':
+        print((datetime.date.today()).strftime("%Y-%m-%d"))
+        print((datetime.date.today()+relativedelta(weeks=+2)).strftime("%Y-%m-%d"))
+
         if Issue.objects.filter(
             book = Book.objects.get(id=id),
             user = CustomUser.objects.get(id=request.user.id)).exists()==False:
+            
             Issue.objects.create(
                 book = Book.objects.get(id=id),
                 user = CustomUser.objects.get(id=request.user.id),
                 day_count = 14,
-                end_time=(datetime.date.today()-relativedelta(day=+14)).strftime("%Y-%m-%d")
+                end_time=(datetime.date.today()+relativedelta(weeks=+2)).strftime("%Y-%m-%d")
                 )
             dc=Book.objects.get(id = id).count
             Book.objects.filter(id = id).update(
@@ -89,7 +93,7 @@ def add_issue(request, id):
                         book = Book.objects.get(id=id),
                         user = CustomUser.objects.get(id=student.id),
                         day_count = 14,
-                        end_time=(datetime.date.today()-relativedelta(day=+14)).strftime("%Y-%m-%d")
+                        end_time=(datetime.date.today()+relativedelta(weeks=+2)).strftime("%Y-%m-%d")
                         )
                     dc=Book.objects.get(id = id).count
                     Book.objects.filter(id = id).update(

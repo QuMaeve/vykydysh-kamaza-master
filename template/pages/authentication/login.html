@@ -4,66 +4,60 @@
    
 
 {% block content %}
-<style>
-    body{
-        background-color:rgb(48, 18, 3)!important;
-    }
-</style>
-<div class="p-5 bg-image" style="
-        background-size: cover;
+
+<!-- 
+<div class="p-9 bg-image" style="
+        background-size: cover; 
         background-position-y: 50%;
-        background-image: url('/static/img/auth-backgroung.jpg');
-        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom,  from(rgba(0,0,0,1.5)), to(rgba(0,0,0,0)));
-        height: 700px;
-        ">
-</div>
+        height: 900px;
+        background-image: url('/static/img/Pushkin.png');"> -->
+        <div class="card m-auto mt-5 shadow-5-strong" style="
+            background: hwb(0 100% 0% / 0.7);
+            backdrop-filter: blur(30px);
+            width: 40%;
+            ">
+            <div class="card-body py-4 px-md-5">
 
-<div class="card shadow-5-strong" style="
-        background: hwb(0 100% 0% / 0.7);
-        backdrop-filter: blur(30px);
-        width: 40%;
-        margin: auto;
-        margin-top: -400px;
-        ">
-    <div class="card-body py-4 px-md-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-10">
+                        <h1 class="Moloko fw-bold text-center mb-5">
+                            ИС "Библиотека"
+                        </h1>
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-lg-10">
-                <h1 class="Moloko fw-bold text-center mb-5">
-                    ИС "Библиотека"
-                </h1>
+                        <form method="post" action="">
 
-                <form method="post" action="">
+                            {% csrf_token %}
 
-                    {% csrf_token %}
+                            {% if form.errors %}
+                            <div class="alert alert-danger">
+                                {{ form.errors }}
+                            </div>
+                            {% endif %}
 
-                    {% if form.errors %}
-                    <div class="alert alert-danger">
-                        {{ form.errors }}
+                            <div class="row">
+                                <div class="form-outline mb-4">
+                                    <input type="text" autocomplete="username"  name="username" placeholder="Логин" class="form-control form-control-success" required=""
+                                        id="id_username" autofocus >
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="password" autocomplete="new-password" name="password" placeholder="Пароль" class="form-control form-control-success" required=""
+                                        id="id_password" >
+                                </div>
+                                <div class="form-outline text-center">
+                                    <button type="submit" class="btn btn-dark pink-button btn-block px-3 mb-4">
+                                        Войти
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
                     </div>
-                    {% endif %}
-
-                    <div class="row">
-                        <div class="form-outline mb-4">
-                            <input type="text" autocomplete="username"  name="username" placeholder="Логин" class="form-control form-control-success" required=""
-                                id="id_username" autofocus >
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <input type="password" autocomplete="new-password" name="password" placeholder="Пароль" class="form-control form-control-success" required=""
-                                id="id_password" >
-                        </div>
-                        <div class="form-outline text-center">
-                            <button type="submit" class="btn btn-dark btn-block mb-4">
-                                Войти
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+        </div>    
+    </div>    
+<!-- </div> -->
+
 
 {% endblock %}

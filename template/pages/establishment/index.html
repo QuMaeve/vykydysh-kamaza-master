@@ -1,0 +1,62 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Учебные учреждения{% endblock title %}
+
+{% block content %} 
+{% for group in user.groups.all %}
+    {% if group.name == 'Администратор' or group.name == 'Библиотекарь' %}
+        <section class="content">
+            <div>
+                <h1 class="Comforter text-center m-3">Учебные учреждения</h1>
+                <div class="m-auto" style="width:90%; margin:auto!important;">
+                    <div class="row">
+                        <div class="col-6 mb-2 text-end">    
+                            <form class="d-flex" role="search" method="post">
+                                {% csrf_token %}
+                                {{ form_search.sort_by }}
+                                {{ form_search.sort_name }}
+                                <button class="btn btn-dark blue-button" type="submit">Ок</button>
+                            </form>
+                        </div>
+                        <a class="col-1 mb-2 btn btn-dark pink-button" 
+                            href="{% url 'establishment-create' %}">
+                            Создать
+                        </a>
+                    </div>
+                    <div class="row">
+                    {% include 'components/pagination.html' %}    
+                    {% for item in data %}
+                        {% with index=forloop.counter %}
+                        {% widthratio data.paginator.per_page 1 data.number|add:-1 as page_index %}
+                        <div class="card m-1 col-3">
+                                <div class="card-body">
+                                    <a href="{% url 'establishment-view' item.id %}">
+                                        <h5 class="card-title">
+                                            {{ item.name }}
+                                        </h5>
+                                    </a>
+                                    <p class="card-title m-0">
+                                        {{ item.locality.name| default:'<br>'}}
+                                    </p>
+                                    <a href="{% url 'establishment-student' item.id %}">Ученики</a> |
+                                    <a href="{% url 'establishment-teacher' item.id %}">Преподаватели</a>
+                                    <p class="card-text">
+                                        <a class="my-2 btn btn-dark orange-button" 
+                                            href="{% url 'establishment-edit' item.id %}">
+                                            Редактировать
+                                        </a>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    
+                        {% endwith %} 
+                    {% endfor %}    
+                    </div>
+                    {% include 'components/pagination.html' %}
+                </div>
+            </div>
+        </section>
+    {% endif %}   
+{% endfor %}
+{% endblock content %}

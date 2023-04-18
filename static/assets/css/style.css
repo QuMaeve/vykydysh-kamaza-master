@@ -9,15 +9,41 @@
     src: local('Moloko'),
         url(/static/assets/font/moloko.ttf); 
     }
-    .Moloko {
+.Moloko {
     font-family: 'Moloko'; 
     font-size: 70px;
-    }
-    .Comforter {
+}
+.Comforter {
     font-family: 'Comforter'; 
     font-size: 70px;
-    }
-   
+}
+
+.pink-button{
+    background: #D580AC!important;
+    border-radius: 30px!important;  
+    border: none!important;    
+    color: #000000!important;
+}
+
+.orange-button{
+    background: #F4A877!important;
+    border-radius: 30px!important;    
+    border: none!important;  
+    font-style: normal!important;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000!important;
+}
+
+.blue-button{
+    background: #9DD6E5 !important;
+    border-radius: 30px!important;  
+    border: none!important;  
+    font-style: normal!important;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000!important;
+}
 /* body{
     background-color:#f7f6f5!important;
 }  */

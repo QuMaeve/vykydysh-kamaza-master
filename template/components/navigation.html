@@ -1,7 +1,10 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" >
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="navbar-brand" href="#">
+                    <i class="bi bi-book"></i> ИБЦ
+                </a>
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{% url 'main' %}">
                         Здравствуйте, 
@@ -27,18 +30,26 @@
                 </li>
                 
                 {% for group in user.groups.all %}
-                {% if group.name == 'Администратор'%}
+                {% if group.name == 'Администратор' or group.name == 'Библиотекарь'%}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" 
                     role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Админ.функции
+                        Администрирование 
                     </a>
                     <ul class="dropdown-menu">
+                        {% if group.name == 'Администратор'%}
                         <li>
                             <a class="dropdown-item" href="/admin">
                                 Административная панель
                             </a>
                         </li>
+                        {% endif %}
+                        <li>
+                            <a class="dropdown-item" href="{% url 'user_index' %}">
+                                Управление учетными записями
+                            </a>
+                        </li>
+                        
                         <li>
                             <a class="dropdown-item" href="{% url 'book-index' %}">
                                 Книги

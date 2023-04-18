@@ -6,25 +6,22 @@
 
 <section class="content">
     <div>
-        <h1 class="Comforter text-center m-3">Каталог</h1>
-        <div class="m-auto" style="width:90%; margin:auto!important;">
+        <!-- <h1 class="Comforter text-center m-3">Каталог</h1> -->
+        <div class="m-3">
             <div class="col-6 mb-2 text-end">    
                 <form class="d-flex" role="search" method="post">
                     {% csrf_token %}
                     {{ form_search.sort_by }}
                     {{ form_search.sort_name }}
-                    <button class="btn btn-outline-success" type="submit">Ок</button>
+                    <button class="btn btn-dark blue-button" type="submit">Найти!</button>
                 </form>
             </div>
-            <div class="row">
-                Выгрузка всех паролей учеников/преподов
-                добавление юзеров
-                перевод из класса в класс
+            <div class="row m-auto">
             {% include 'components/pagination.html' %}    
             {% for item in data %}
                 {% with index=forloop.counter %}
                 {% widthratio data.paginator.per_page 1 data.number|add:-1 as page_index %}
-                <div class="card m-1 col-3">
+                <div class="card m-1 col-2">
                     <a href="{% url 'book-view' item.id %}">
                         <img 
                             {% if item.cover_path %}
@@ -34,7 +31,7 @@
                             {%else %} 
                                 src='/static/img/default-img.jpg'
                             {%endif%} 
-                            style="height: 200px !important;" 
+                            style="height: 180px !important;" 
                             class="card-img-top" alt="...">
                     </a>    
                         <div class="card-body">
@@ -58,7 +55,7 @@
                                     <form method="post" action="{% url 'create-issue' item.id %} ">
                                         {% csrf_token %}
                                         <input type="hidden" id="book-id" name="book_id" required>
-                                        <button type="submit" class="btn btn-outline-success" >
+                                        <button type="submit" class="btn btn-dark pink-button" >
                                             <i class="bi bi-mortarboard-fill"></i> Получить 
                                         </button>
                                     </form>
@@ -67,7 +64,7 @@
                                     {% if group.name != 'Ученики'%}
                                     <div class="col-6">
                                         <a type="button" href="{% url 'add-issue' item.id %}"
-                                        class="btn btn-outline-warning">
+                                        class="btn btn-dark orange-button">
                                             <i class="bi bi-eye-fill"></i> Выдать 
                                         </a>   
                                     </div>

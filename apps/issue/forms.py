@@ -17,10 +17,15 @@ class IssueUserForm(forms.ModelForm):
     )
     def __init__(self, user, *args, **kwargs):
         super(IssueUserForm, self).__init__(*args, **kwargs)
-        # print(user.establishment.id)
-        self.fields['student'].queryset = CustomUser.objects.filter(
-             establishment=Establishment.objects.get(id=user.establishment.id),
-             groups__name='Ученики')
+        if user.establishment:
+            print(user.establishment)
+            self.fields['student'].queryset = CustomUser.objects.filter(
+                establishment=Establishment.objects.get(id=user.establishment.id),
+                groups__name='Ученики')
+        else:
+            print('else')
+            self.fields['student'].queryset = CustomUser.objects.filter(
+                groups__name='Ученики')
            
     class Meta:
             model = Issue

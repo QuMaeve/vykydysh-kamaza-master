@@ -1,0 +1,29 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Учебные учреждения{% endblock title %}
+
+{% block content %} 
+{% for group in user.groups.all %}
+    {% if group.name == 'Администратор' or group.name == 'Библиотекарь' %}
+        <section class="content">
+            <div>
+                <h1 class="Comforter text-center m-3">Создать учебное учреждение</h1>
+                <div class="m-auto" style="width:90%; margin:auto!important;">
+                    <div class="row">
+                        <div class="col-6 m-auto text-start">    
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button class="btn btn-dark pink-button" type="submit">
+                                    Ок
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    {% endif %}   
+{% endfor %}
+{% endblock content %}

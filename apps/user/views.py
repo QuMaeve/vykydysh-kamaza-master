@@ -27,7 +27,24 @@ from dateutil.relativedelta import *
 import datetime
 from django.utils import timezone
 
+
+from apps.user.forms import CustomUserCreationForm
 # Create your views here.
+
+@login_required(login_url='login')
+@permission_required('customuser.add_customuser', raise_exception=True)
+def create(request):
+    form = CustomUserCreationForm()
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Запись успешно создана')
+            return redirect('user_index')
+        else:
+            messages.error(request, 'Введите корректные данные')
+    return render(request, 'pages/admin/user_create.html', {'form': form})
+
 @login_required(login_url='login')
 def index(request):
     form = ImportForm()
@@ -36,6 +53,15 @@ def index(request):
         request, 
         'pages/admin/import.html', 
         {'form':form,'g_name':g_name,}
+        )
+
+@login_required(login_url='login')
+def user_index(request):
+    data=CustomUser.objects.all()
+    return render(
+        request, 
+        'pages/admin/user.html', 
+        {'data':data,}
         )
 
 @login_required(login_url='login')

@@ -1,0 +1,41 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Библиотека{% endblock title %}
+
+{% block content %} 
+
+<section class="content">
+    <div>
+        <h1 class="Comforter text-center m-3">Управление учетными записями</h1>
+        <div class="m-auto" style="width:90%; margin:auto!important;">
+            
+            <div class="row">
+                <h3>
+                <a href="{% url 'establishment'  %}" class="link-dark text-decoration-none">
+                    <i class="bi bi-bank"></i>
+                    Школы
+                </a>  </h3>
+             <!--    <a href="
+                {% comment %} {% url 'user-create'  %} {% endcomment %}
+                ">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <p>Добавить пользователя</p>
+                </a> 
+                <a href="
+                {% comment %} {% url 'establishment-create'  %} {% endcomment %}
+                ">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <p>Добавить учебное учреждение</p>
+                </a> 
+                <a href="
+                {% comment %} {% url 'class-create'  %} {% endcomment %}
+                ">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <p>Добавить класс</p>
+                </a> 
+            </div> -->
+        </div>
+        
+    </div>
+</section>
+{% endblock content %}
