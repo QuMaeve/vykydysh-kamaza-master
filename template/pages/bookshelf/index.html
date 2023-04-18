@@ -54,14 +54,14 @@
                             {%else %} 
                                 href='#'
                             {%endif%}
-                            class="btn btn-outline-primary" >
+                            class="btn btn-dark pink-button" >
                                 Читать
                             </a>
                             {% for group in user.groups.all %}
                                 {% if group.name == 'Администратор' or group.name == 'Библиотекарь' %}
                                     <a type="button" 
                                     href="{% url 'book-edit' item.book.id %}" 
-                                    class="btn btn-outline-primary" >
+                                    class="btn btn-dark blue-button" >
                                         Редактировать
                                     </a>
                                 {% endif %}
