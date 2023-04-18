@@ -30,7 +30,7 @@
                         {% widthratio data.paginator.per_page 1 data.number|add:-1 as page_index %}
                         <div class="card m-1 col-3">
                                 <div class="card-body">
-                                    <a href="{% url 'establishment-view' item.id %}">
+                                    <a href="{% url 'establishment-view' item.id %}" class="link-dark text-decoration-none">
                                         <h5 class="card-title">
                                             {{ item.name }}
                                         </h5>
@@ -38,10 +38,10 @@
                                     <p class="card-title m-0">
                                         {{ item.locality.name| default:'<br>'}}
                                     </p>
-                                    <a href="{% url 'establishment-student' item.id %}">Ученики</a> |
-                                    <a href="{% url 'establishment-teacher' item.id %}">Преподаватели</a>
+                                    <a href="{% url 'establishment-student' item.id %}" class="link-warning text-decoration-none">Ученики</a> |
+                                    <a href="{% url 'establishment-teacher' item.id %}" class="link-warning text-decoration-none">Преподаватели</a>
                                     <p class="card-text">
-                                        <a class="my-2 btn btn-dark orange-button" 
+                                        <a class="my-2 btn btn-dark blue-button" 
                                             href="{% url 'establishment-edit' item.id %}">
                                             Редактировать
                                         </a>

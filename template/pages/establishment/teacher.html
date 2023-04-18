@@ -29,7 +29,7 @@
                         {% with index=forloop.counter %}
                         <div class="card m-1 col-3">
                                 <div class="card-body">
-                                    <a href="{% url 'establishment-view' item.id %}">
+                                    <a href="{% url 'establishment-view' item.id %}" class="link-dark text-decoration-none">
                                         <h5 class="card-title">
                                             {{ item.username }}
                                         </h5>
