@@ -16,24 +16,26 @@
                     <button class="btn btn-dark blue-button" type="submit">Найти!</button>
                 </form>
             </div>
-            <div class="row m-auto">
-            {% include 'components/pagination.html' %}    
-            {% for item in data %}
-                {% with index=forloop.counter %}
-                {% widthratio data.paginator.per_page 1 data.number|add:-1 as page_index %}
-                <div class="card m-1 col-2">
-                    <a href="{% url 'book-view' item.id %}">
-                        <img 
-                            {% if item.cover_path %}
-                                src='/media/{{ item.cover_path }}' 
-                            {% elif item.cover_url %}
-                                src='{{ item.cover_url }}' 
-                            {%else %} 
-                                src='/static/img/default-img.jpg'
-                            {%endif%} 
-                            style="height: 180px !important;" 
-                            class="card-img-top" alt="...">
-                    </a>    
+            
+            <div class="text-center">
+                {% include 'components/pagination.html' %}
+                <div class="row d-flex justify-content-center">        
+                {% for item in data %}
+                    {% with index=forloop.counter %}
+                    {% widthratio data.paginator.per_page 1 data.number|add:-1 as page_index %}
+                    <div class="card m-2 col-2">
+                        <a href="{% url 'book-view' item.id %}">
+                            <img 
+                                {% if item.cover_path %}
+                                    src='/media/{{ item.cover_path }}' 
+                                {% elif item.cover_url %}
+                                    src='{{ item.cover_url }}' 
+                                {%else %} 
+                                    src='/static/img/default-img.jpg'
+                                {%endif%} 
+                                style="height: 180px !important; -webkit-mask-image:-webkit-radial-gradient(circle, rgb(255, 255, 255), rgba(255, 255, 255, 0.542));" 
+                                class="card-img-top m-1" alt="...">
+                        </a>    
                         <div class="card-body">
                             <a href="{% url 'book-view' item.id %}" class="link-dark text-decoration-none">
                                 <h5 class="card-title">
@@ -56,7 +58,8 @@
                                         {% csrf_token %}
                                         <input type="hidden" id="book-id" name="book_id" required>
                                         <button type="submit" class="btn btn-dark pink-button" >
-                                            <i class="bi bi-mortarboard-fill"></i> Получить 
+                                            <!-- <i class="bi bi-mortarboard-fill"></i>  -->
+                                            Получить 
                                         </button>
                                     </form>
                                 </div>
@@ -65,28 +68,28 @@
                                     <div class="col-6">
                                         <a type="button" href="{% url 'add-issue' item.id %}"
                                         class="btn btn-dark orange-button">
-                                            <i class="bi bi-eye-fill"></i> Выдать 
+                                            <!-- <i class="bi bi-eye-fill"></i>  -->
+                                            Выдать 
                                         </a>   
                                     </div>
                                     {% endif %}
                                 {% endfor %}
                             </div>
                             <p class="card-text">
-                                <strong class="text-muted ">
-                                    {{page_index|add:index}}
+                                <strong class="text-muted ">  
+                                    <!-- {{page_index|add:index}}  | -->
                                 </strong>
                                 <small class="text-muted text-end">
-                                    |  {{ item.genre | default:'<br>'}}
+                                    {{ item.genre | default:'<br>'}}
                                 </small>
                             </p>
-                            
                         </div>
-                    </a>
+                    </div>
+                    {% endwith %}    
+                {% endfor %}
                 </div>
-                {% endwith %}    
-            {% endfor %}
-            </div>
             {% include 'components/pagination.html' %}
+            </div>
         </div>
         
     </div>
